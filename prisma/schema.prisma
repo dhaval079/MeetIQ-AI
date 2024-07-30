@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  extensions = [vector]
+}
+
+model Meeting {
+  id                           String  @id @default(uuid())
+  Meet_link                    String?
+  Title                        String?
+  Title_Embedding              Unsupported("vector(768)")?
+  Time                         String?
+  Month                        Int?
+  Year                         Int?
+  Full_Date                    String?
+  Attendees                    String?
+  Attendees_Emails             String?
+  Meeting_Agenda               String?
+  Meeting_Highlights           String?
+  Meeting_Transcript           String?
+  Meeting_Transcript_Embedding Unsupported("vector(768)")?
+  Meeting_summary              String?
+  Meeting_summary_Embedding    Unsupported("vector(768)")?
+  Chunk_number                 String?
+}
+
+model ThreadUserData {
+  id         String         @id @default(uuid())
+  User_Email String         @unique
+  History    Conversation[] @relation("UserConversations")
+  Chat       Chat[]         @relation("UserChats")
+}
+
+model Conversation {
+  id          String         @id @default(uuid())
+  Email       String
+  ThreadID    String         @unique
+  Entire_data Json
+  User_Data   Chat[]         @relation("ConversationChats")
+  User        ThreadUserData @relation("UserConversations", fields: [Email], references: [User_Email])
+}
+
+model Chat {
+  id            String         @id @default(uuid())
+  Email         String  
+  User_threadID String
+  Question      String
+  Answer        String
+  UserThread    Conversation   @relation("ConversationChats", fields: [User_threadID], references: [ThreadID])
+  User          ThreadUserData @relation("UserChats", fields: [Email], references: [User_Email])
+}
