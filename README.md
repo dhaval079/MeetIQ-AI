@@ -2,7 +2,7 @@
 npm install
 npm run dev
 ```
-![My Project Logo](meetiq.png)
+![My Project Logo](meetiq.jpg)
 
 
 
