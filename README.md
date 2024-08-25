@@ -10,7 +10,9 @@ An AI-powered meeting assistant that transforms Google Meet conversations into a
 - Interactive Q&A system based on processed meeting content
 - Efficient data flow across multiple platforms (Google Meet, Drive, PostgreSQL, Slack)
 
+
 ![My Project Logo](meetiq.jpg)
+
 
 ## Technology Stack
 
@@ -143,12 +145,3 @@ We welcome contributions to the MeetIQ project. Please refer to our CONTRIBUTING
 
 This project is licensed under the MIT License. See the LICENSE.md file for full details.
 
----
-
-Developed by [Your Name/Team Name]
-
-
-
-```
-open http://localhost:3000
-```
