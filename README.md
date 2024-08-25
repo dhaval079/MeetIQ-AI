@@ -20,6 +20,96 @@ An AI-powered meeting assistant that transforms Google Meet conversations into a
 - AI and Machine Learning: OpenAI API
 - Integrations: Zapier, Google Drive, Slack
 
+
+### Prerequisites
+
+- Node.js (v14 or later)
+- npm or yarn
+- PostgreSQL
+- Slack API credentials
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/meetiq.git
+cd meetiq
+```
+
+2. Set up the Slack bot frontend:
+```bash
+cd slack-bolt-app
+npm install
+```
+
+3. Set up the database:
+```bash
+cd ../prisma
+npm install
+```
+
+
+
+5. Create .env files:
+
+For slack-bolt-app/.env:
+```bash
+
+SLACK_BOT_TOKEN=your_slack_bot_token
+SLACK_SIGNING_SECRET=your_slack_signing_secret
+```
+
+
+5. For prisma/.env:
+```bash
+
+DATABASE_URL="postgresql://username:password@localhost:5432/meetiq"
+```
+
+
+6. Initialize the database:
+```bash
+
+cd prisma
+npx prisma migrate dev
+```
+
+
+7. Running the Application
+Start the database service:
+```bash
+
+cd prisma
+npm run start
+```
+
+
+8. In a new terminal, start the Slack bot:
+```bash
+
+cd slack-bolt-app
+npm run start
+```
+
+
+### Development
+
+Modify database schema in prisma/schema.prisma
+Apply schema changes: npx prisma migrate dev
+Slack bot logic located in slack-bolt-app/app.js
+Core application logic in src/index.ts
+
+### Testing
+
+9. Run tests for each component:
+```bash
+cd slack-bolt-app
+npm test
+
+cd ../prisma
+npm test
+```
+
 ## System Architecture
 
 1. Data Capture: Collect meeting data from Google Meet
