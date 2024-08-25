@@ -564,21 +564,6 @@ app.action("submit_button", async ({ body, ack, client, say }) => {
       console.log("None of the radio buttons selected");
       timeInfo = "None of the radio buttons selected";
     }
-    // const url = `https://slack.com/api/users.info?user=${userId}&pretty=1`;
-    // try {
-    //   const email_response = await axios.get(url, {
-    //     headers: {
-    //       'Authorization': `Bearer ${process.env.SLACK_BOT_TOKEN}`
-    //     }
-    //   });
-    //   console.log("EmailResponse",email_response)
-    //   user_email = email_response.data.user.profile.email
-    //   ;
-    //   console.log("UserEmail",user_email);
-    // } catch (error) {
-    //   console.error("Error fetching user info:", error);
-    // }
-
     Filtered_Meetings = await FilterMeetingByEmail(user_email);
     // console.log(Filtered_Meetings);
     console.log(Filtered_Meetings.length);
@@ -613,35 +598,7 @@ app.action("submit_button", async ({ body, ack, client, say }) => {
       Meeting_Keywords: keywords,
     };
 
-    // console.log("Postdata : ", postData);
-    // Send the POST request
-    // async function sendPostAndWriteFile() {
-    //   try {
-    //     // Send the POST request
-    //     // axios.post('https://slack-endpoint-90ri.onrender.com/alldata?email', postData);
-    //     console.log('POST request successful');
-
-    //     // Convert JSON object to string
-    //     const jsonData = JSON.stringify(postData, null, 2);
-
-    //     // Define the file path and name
-    //     const filePath = 'postData_1.json';
-
-    //     // Write the JSON string to a file
-    //     fs.writeFile(filePath, jsonData, (err) => {
-    //       if (err) {
-    //         console.error('Error writing file:', err);
-    //       } else {
-    //         console.log('File has been written successfully');
-    //       }
-    //     });
-    //   } catch (error) {
-    //     console.error('Error sending POST request:', error);
-    //   }
-    // }
-
-    // Call the function
-    // sendPostAndWriteFile();
+   
 
     console.log("Meetings Fetched");
 
